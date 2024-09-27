@@ -28,8 +28,11 @@ SECRET_KEY = os.environ.get("SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get("DEBUG","False").lower() == "true"
 
+# DEBUG = True
+
 ALLOWED_HOSTS = os.environ.get("ALLOWED_HOSTS").split(" ")
 
+# ALLOWED_HOSTS = []
 
 # Application definition
 
@@ -90,6 +93,8 @@ DATABASES = {
 database_url = os.environ.get("DATABASE_URL")
 
 DATABASES["default"] = dj_database_url.parse(database_url)
+
+# DATABASES["default"] = dj_database_url.parse("postgresql://blogdb_fq8m_user:CTLPV6No8rRIQrgnSbzIqYiLs09zQvUj@dpg-crr3n1dds78s73cq5620-a.oregon-postgres.render.com/blogdb_fq8m")
 
 
 
