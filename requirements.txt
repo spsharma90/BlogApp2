@@ -1,8 +1,8 @@
 asgiref==3.3.1
-crispy-bootstrap4==1.0.2  # Downgrade to a compatible version
+crispy-bootstrap4==2021.10.0  # Use this compatible version
 dj-database-url==0.5.0
 Django==3.2.19
-django-crispy-forms==1.9.0  # Use an earlier version compatible with Django 3.2
+django-crispy-forms==1.9.0  # Keep this version for compatibility
 gunicorn==20.1.0
 packaging==21.3
 pillow==8.4.0
