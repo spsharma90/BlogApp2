@@ -21,18 +21,18 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-# SECRET_KEY = 'django-insecure-%4*tu_k0-owr07n80vlbq7nh3j#u3)bpub25czb%bdyvd9-sb4'
+SECRET_KEY = 'django-insecure-%4*tu_k0-owr07n80vlbq7nh3j#u3)bpub25czb%bdyvd9-sb4'
 
-SECRET_KEY = os.environ.get("SECRET_KEY")
+# SECRET_KEY = os.environ.get("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.environ.get("DEBUG","False").lower() == "true"
+# DEBUG = os.environ.get("DEBUG","False").lower() == "true"
 
-# DEBUG = True
+DEBUG = True
 
-ALLOWED_HOSTS = os.environ.get("ALLOWED_HOSTS").split(" ")
+# ALLOWED_HOSTS = os.environ.get("ALLOWED_HOSTS").split(" ")
 
-# ALLOWED_HOSTS = []
+ALLOWED_HOSTS = []
 
 # Application definition
 
@@ -51,6 +51,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -92,9 +93,9 @@ DATABASES = {
 
 database_url = os.environ.get("DATABASE_URL")
 
-DATABASES["default"] = dj_database_url.parse(database_url)
+# DATABASES["default"] = dj_database_url.parse(database_url)
 
-# DATABASES["default"] = dj_database_url.parse("postgresql://blogdb_fq8m_user:CTLPV6No8rRIQrgnSbzIqYiLs09zQvUj@dpg-crr3n1dds78s73cq5620-a.oregon-postgres.render.com/blogdb_fq8m")
+DATABASES["default"] = dj_database_url.parse("postgresql://blogdb_fq8m_user:CTLPV6No8rRIQrgnSbzIqYiLs09zQvUj@dpg-crr3n1dds78s73cq5620-a.oregon-postgres.render.com/blogdb_fq8m")
 
 
 
@@ -133,11 +134,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
 STATIC_URL = '/static/'
-STATICFILES_DIRS=[
-    os.path.join(BASE_DIR, 'static')
-]
-
-STATIC_ROOT = os.path.join(BASE_DIR,'assets')
+STATIC_ROOT = os.path.join(BASE_DIR, 'assets')
+STATICFILES_STORAGE = "whitenoise.storage.CompressManifestStaticFilesStorage"
 
 MEDIA_ROOT = os.path.join(BASE_DIR,'media')
 MEDIA_URL = '/media/'
